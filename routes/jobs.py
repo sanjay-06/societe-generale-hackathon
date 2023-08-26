@@ -56,7 +56,7 @@ job_dataset = [
   {
     "Job_Title": "Data Scientist",
     "Company_Name": "DataAnalytics Inc.",
-    "Required_Skills": ["Python"],
+    "Required_Skills": ["Python", "Machine Learning"],
     "Experience_Years_Required": 3,
     "Description": "Extract insights from data and develop predictive models."
   },
@@ -142,10 +142,11 @@ async def submit_jobs(request : Request):
     #     key, value = pair.split("=")
     #     processed_data[key] = value
 
-    print(processed_data)
     import json
     processed_data['experience'] = [{"span": json.loads(processed_data['experience'])}]
+    print(processed_data)
 
     best_matches = JobMatcher.find_best_job_matches(processed_data)
+    print(best_matches)
     matches = JobMatcher.get_top_jobs(best_matches)
     return JSONResponse(content=matches)

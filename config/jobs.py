@@ -26,7 +26,7 @@ class JobMatcherApp:
         self.freelancers.append(freelancer_data)
     
     def calculate_cosine_similarity(self, user_skills, job_skills):
-        user_skills = set(user_skills.split(', '))
+        user_skills = set(user_skills.split(','))
         job_skills = set(job_skills)
         
         all_skills = list(user_skills.union(job_skills))
@@ -60,7 +60,8 @@ class JobMatcherApp:
         )
         
         for idx, job in enumerate(self.jobs):
-            job_skills = job["Required_Skills"]
+            job_skills = job["Required_Skills"] 
+            print(type(user_skills))
             skill_similarity = self.calculate_cosine_similarity(user_skills, job_skills)
             
 
@@ -72,7 +73,7 @@ class JobMatcherApp:
             # Combine skill similarity and experience relevance
             combined_similarity = skill_similarity * experience_relevance
             
-            best_matches.append((job["Job_Title"], job["Company_Name"], combined_similarity))
+            best_matches.append((job["Job_Title"], job["Company_Name"],job["Description"], combined_similarity))
         
         best_matches.sort(key=lambda x: x[2], reverse=True)
         return best_matches
@@ -126,9 +127,9 @@ class JobMatcherApp:
     
     def get_top_jobs(self, best_matches):
         jobs_dump = []
-        for job_title, company, similarity in best_matches:
+        for job_title, company, dsc, similarity in best_matches:
             if similarity >0 :
-                jobs_dump.append({"designation": job_title,"company": company,"similarity": similarity})
+                jobs_dump.append({"designation": job_title,"company": company,"Description": dsc, "similarity": similarity})
         
         return jobs_dump
 
