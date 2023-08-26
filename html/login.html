@@ -1,0 +1,352 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--  meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="../static/styles.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+  rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+<script src="https://cdn.tailwindcss.com/3.3.0"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      fontFamily: {
+        sans: ["Roboto", "sans-serif"],
+        body: ["Roboto", "sans-serif"],
+        mono: ["ui-monospace", "monospace"],
+      },
+    },
+    corePlugins: {
+      preflight: false,
+    },
+  };
+</script>
+    <title>Tailwind CSS CDN</title>
+    <script>
+      function formatDateToDashes(date) {
+          console.log(date)
+          const isoString = date.toISOString();
+          const parts = isoString.split('T')[0].split('-');
+          return `${parts[0]}-${parts[1]}-${parts[2]}`;
+        }
+    </script>
+
+  </head>
+  <body>
+    <nav class="bg-gray-800">
+        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+          <div class="relative flex items-center justify-between h-16">
+            <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+              <div class="flex-shrink-0 flex items-center">
+                <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
+                <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow">
+              </div>
+              <div class="hidden sm:block sm:ml-6">
+                <div class="flex space-x-4">
+                  <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                    <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                    <a href="/files" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Recommend Jobs</a>
+
+                    <a href="/upload" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" >Development Plan</a>
+
+                    <a href="/permission" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Recommend Course</a>
+
+                    <!-- <a href="/readfiles" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"></a> -->
+
+                    <!-- <a href="/writefiles" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Edit files</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- This example requires Tailwind CSS v2.0+ -->
+<div class="mt-10 ml-32 lg:flex lg:items-center lg:justify-between">
+    <div class="flex-1 min-w-0">
+    
+    </div>
+  </div>
+      <form class="flex flex-col items-center justify-center" action="/jobs" method="post" id="jobForm">
+        <!-- <form class="bg-white p-6 rounded shadow-md"> -->
+          <div class="mb-6 w-10/12">
+              <label for="name" class="block text-gray-700 font-semibold mb-2">Name</label>
+              <input type="text" class="w-full px-3 py-2 border rounded" id="name" name="name" >
+          </div>
+
+          <div class="mb-6 w-10/12">
+              <label for="degreeType" class="block text-gray-700 font-semibold mb-2">Degree Type</label>
+              <input type="text" class="w-full px-3 py-2 border rounded" id="degreeType" name="degreeType" >
+          </div>
+
+          <!-- Add fields for other degree details (specialization, start_date, end_date, college) -->
+
+          <div class="mb-6 w-10/12">
+            <label for="interestedRole" class="block text-gray-700 font-semibold mb-2">Interested Role</label>
+            <select class="w-full px-3 py-2 border rounded" id="interestedRole" name="interestedRole" >
+                <option value="" disabled selected>Select an option</option>
+                <option value="Data Scientist">Data Scientist</option>
+                <option value="Software Engineer">Software Engineer</option>
+                <option value="UX Designer">UX Designer</option>
+                <!-- Add more options here -->
+            </select>
+        </div>
+
+          <!-- Add fields for experience details (company, role, span, desc, tool_tech) -->
+
+          <div class="mb-6 w-10/12">
+              <label for="skills" class="block text-gray-700 font-semibold mb-2">Skills</label>
+              <select id="multiSelection" data-te-select-init multiple>
+                <option value="Python">Python</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="SQL">SQL</option>
+                <option value="Machine Learning">Machine Learning</option>
+                <!-- Add more options here -->
+            </select>
+          </div>
+
+          <div class="mb-6 w-10/12">
+              <label for="expectedSalary" class="block text-gray-700 font-semibold mb-2">Expected Salary</label>
+              <input type="text" class="w-full px-3 py-2 border rounded" id="expectedSalary" name="expectedSalary" >
+          </div>
+
+          <div class="mb-6 w-10/12">
+            <label for="exp" class="block text-gray-700 font-semibold mb-2">Experiences</label>
+            <div id="experienceFields">
+              <!-- JavaScript will populate the fields here -->
+              <fieldset class="border p-4 rounded mb-4">
+                <legend>Experience 1</legend>
+                <label for="company1">Company:</label>
+                <input type="text" id="company1" class="mt-2 mb-2 w-full border rounded px-3 py-2">
+                <label for="role1">Role:</label>
+                <input type="text" id="role1" class="mt-2 mb-2 w-full border rounded px-3 py-2">
+                <label for="start1">Start Date:</label>
+                <input type="date" id="start1" class="mt-2 mb-2 w-full border rounded px-3 py-2">
+                <label for="end1">End Date:</label>
+                <input type="date" id="end1" class="mt-2 mb-2 w-full border rounded px-3 py-2">
+                <label for="desc1">Description:</label>
+                <textarea id="desc1" class="mt-2 mb-2 w-full border rounded px-3 py-2"></textarea>
+                <label for="toolTech1">Tools and Technologies:</label>
+                <input type="text" id="toolTech1" class="mt-2 mb-2 w-full border rounded px-3 py-2">
+              </fieldset>
+            </div>
+          </div>
+          
+          <button type="button" id="addExperience" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            + Add Experience
+          </button>
+
+          <div class="mb-6 w-10/12">
+              <label for="mostRecentCompany" class="block text-gray-700 font-semibold mb-2">Most Recent Company</label>
+              <input type="text" class="w-full px-3 py-2 border rounded" id="mostRecentCompany" name="mostRecentCompany" >
+          </div>
+
+          <div class="mb-6 w-10/12">
+              <label for="mostRecentDesignation" class="block text-gray-700 font-semibold mb-2">Most Recent Designation</label>
+              <input type="text" class="w-full px-3 py-2 border rounded" id="mostRecentDesignation" name="mostRecentDesignation" >
+          </div>
+
+          <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded font-semibold">Submit</button>
+          <br>
+      </form>
+
+      <div id="a">
+
+      </div>
+      <div id="responseContainer"></div>
+
+      <script>
+        
+
+        const addButton = document.getElementById('addExperience');
+        const experienceFields = document.getElementById('experienceFields');
+    
+        let experienceCount = 1;
+    
+        addButton.addEventListener('click', () => {
+          experienceCount++;
+    
+          const fieldSet = document.createElement('fieldset');
+          fieldSet.classList.add('border', 'p-4', 'rounded', 'mb-4' , 'px-3','py-2');
+          
+          const legend = document.createElement('legend');
+          legend.textContent = `Experience ${experienceCount}`;
+          
+          const companyLabel = document.createElement('label');
+          companyLabel.textContent = 'Company:';
+          companyLabel.classList.add('mt-2')
+          const companyInput = document.createElement('input');
+          companyInput.type = 'text';
+          companyInput.classList.add('w-full', 'mt-2', 'border', 'rounded', 'mb-2', 'px-3','py-2')
+          
+          const roleLabel = document.createElement('label');
+          roleLabel.textContent = 'Role:';
+          roleLabel.classList.add('mt-2')
+          const roleInput = document.createElement('input');
+          roleInput.type = 'text';
+          roleInput.classList.add('w-full', 'mt-2', 'border', 'rounded', 'mb-2', 'px-3','py-2')
+
+          const startLabel = document.createElement('label');
+          startLabel.textContent = 'Start Date:';
+          startLabel.classList.add('mt-2')
+          const startInput = document.createElement('input');
+          startInput.type = 'date';
+          startInput.classList.add('w-full', 'mt-2', 'border', 'rounded', 'mb-2', 'px-3','py-2')
+    
+          const endLabel = document.createElement('label');
+          endLabel.textContent = 'End Date:';
+          endLabel.classList.add('mt-2')
+          const endInput = document.createElement('input');
+          endInput.type = 'date';
+          endInput.classList.add('w-full', 'mt-2', 'border', 'rounded', 'mb-2', 'px-3','py-2')
+          
+          const descLabel = document.createElement('label');
+          descLabel.textContent = 'Description:';
+          descLabel.classList.add('mt-2')
+          const descInput = document.createElement('textarea');
+          descInput.classList.add('w-full', 'mt-2', 'border', 'rounded', 'mb-2', 'px-3','py-2')
+          
+          const toolTechLabel = document.createElement('label');
+          toolTechLabel.textContent = 'Tools and Technologies:';
+          toolTechLabel.classList.add('mt-2')
+          const toolTechInput = document.createElement('input');
+          toolTechInput.type = 'text';
+          toolTechInput.classList.add('w-full', 'mt-2', 'border', 'rounded', 'mb-2', 'px-3','py-2')
+    
+          const deleteButton = document.createElement('button');
+          deleteButton.type = 'button';
+          deleteButton.textContent = 'Delete';
+          deleteButton.classList.add('text-red-500', 'ml-2', 'border', 'border-red-500', 'rounded', 'p-1', 'hover:bg-red-500', 'hover:text-white');
+          deleteButton.addEventListener('click', () => {
+            fieldSet.remove();
+            experienceCount--;
+          });
+          
+          fieldSet.appendChild(legend);
+          fieldSet.appendChild(companyLabel);
+          fieldSet.appendChild(companyInput);
+          fieldSet.appendChild(roleLabel);
+          fieldSet.appendChild(roleInput);
+          fieldSet.appendChild(startLabel);
+          fieldSet.appendChild(startInput);
+          fieldSet.appendChild(endLabel);
+          fieldSet.appendChild(endInput);
+          fieldSet.appendChild(descLabel);
+          fieldSet.appendChild(descInput);
+          fieldSet.appendChild(toolTechLabel);
+          fieldSet.appendChild(toolTechInput);
+          fieldSet.appendChild(deleteButton);
+          
+          experienceFields.appendChild(fieldSet);
+        });
+        const jobForm = document.getElementById('jobForm');
+
+        jobForm.addEventListener('submit', async (event) => {
+          event.preventDefault(); // Prevent the default form submission
+
+          const formData = new FormData(jobForm);
+          const selectedSkills = Array.from(document.getElementById('multiSelection').selectedOptions).map(option => option.value);
+          // Append selected skills to the form data
+          selectedSkills.forEach(skill => formData.append('skills', skill));
+
+          // const experienceFields = document.querySelectorAll('[data-experience]');
+          // console.log(experienceFields)
+          // experienceFields.forEach((field, index) => {
+          var nestedObj = {
+            "start_date": document.getElementById("start1").value,
+            "end_date": document.getElementById("end1").value,
+          }
+
+          var nesstr = JSON.stringify(nestedObj)
+
+          formData.append(`experience`, nesstr);
+          // formData.append(`experience_${index + 1}_end_date`, endDate);
+          // });
+
+  // const startDate = document.getElementById('start1').value;
+  // const endDate = document.getElementById('end1').value;
+  // // Append start date and end date to the form data
+  // formData.append('start_date', startDate);
+  // formData.append('end_date', endDate);
+  
+  const headers = new Headers();
+  headers.append('Content-Type', 'application/x-www-form-urlencoded'); // Set the content type
+
+  const url = "/jobs"; // URL to submit the form data
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: headers,
+      body: new URLSearchParams(formData).toString(), // Convert FormData to URL-encoded string
+    });
+
+    if (response.ok) {
+      // Form submission was successful
+      const responseData = await response.json();
+
+// Create a div element to display the response data
+const responseDiv = document.createElement('div');
+responseDiv.classList.add('bg-gray-100', 'container', 'mx-auto', 'p-4', 'w-10/12');
+
+// Populate the response div with the data
+responseData.forEach(element => {
+  const innerDiv = document.createElement('div');
+  innerDiv.classList.add('bg-white', 'p-4', 'rounded', 'shadow', 'mb-6');
+
+  const h2 = document.createElement('h2');
+  h2.classList.add('text-lg', 'font-semibold', 'mb-2');
+  h2.textContent = element.company;
+
+  const p = document.createElement('p');
+  p.classList.add('text-gray-600');
+  p.textContent = element.designation;
+
+  const ul = document.createElement('ul');
+  ul.classList.add('mt-2');
+  const li1 = document.createElement('li');
+  li1.classList.add('text-gray-700');
+  li1.textContent = 'Coding';
+  const li2 = document.createElement('li');
+  li2.classList.add('text-gray-700');
+  li2.textContent = 'Debugging';
+  const li3 = document.createElement('li');
+  li3.classList.add('text-gray-700');
+  li3.textContent = 'Problem Solving';
+  ul.appendChild(li1);
+  ul.appendChild(li2);
+  ul.appendChild(li3);
+
+  innerDiv.appendChild(h2);
+  innerDiv.appendChild(p);
+  innerDiv.appendChild(ul);
+
+  responseDiv.appendChild(innerDiv);
+});
+
+// Clear previous contents and append the new response div
+responseContainer.innerHTML = '';
+responseContainer.appendChild(responseDiv);
+      // console.log(response.result)
+      // You can redirect or show a success message here
+    } else {
+      // Handle form submission error
+      console.error("Form submission error:", response.statusText);
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
+  }
+});
+
+</script>
+  </body>
+</html>
